@@ -33,7 +33,7 @@ class AlexTest {
 
     @Test
     public void getPlaceOfLiving() {
-        String expectedPlace = "Зоопарк";
+        String expectedPlace = "Нью-Йоркский зоопар";
         String actualPlace = alex.getPlaceOfLiving();
 
         assertEquals(expectedPlace, actualPlace);

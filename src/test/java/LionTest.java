@@ -1,17 +1,15 @@
-import com.example.Alex;
-import com.example.Cat;
 import com.example.Feline;
 import com.example.Lion;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class LionTest {
@@ -23,17 +21,6 @@ class LionTest {
     @BeforeEach
     void setUp() throws Exception {
         lion = new Lion("Самка", felineMock);
-    }
-
-    @Test
-    public void doesHaveManeFemale(){
-        Assertions.assertFalse(lion.doesHaveMane(), "У самки не может быть гривы");
-    }
-
-    @Test
-    public void doesHaveManeMale() throws Exception {
-        Lion maleLion = new Lion("Самец", felineMock);
-        Assertions.assertTrue(maleLion.doesHaveMane(), "У самца может быть гривы");
     }
 
     @Test
@@ -60,5 +47,15 @@ class LionTest {
         assertEquals(expectedFood, actualFood);
         Mockito.verify(felineMock).getFood("Хищник");
     }
+
+    @ParameterizedTest
+    @CsvSource({"Самец, true", "Самка, false"})
+    public void doesHaveMane(String sex, boolean expectedMane) throws Exception {
+        Lion lionParam = new Lion(sex, felineMock);
+        assertEquals(expectedMane, lionParam.doesHaveMane());
+    }
+
+
+
 }
 

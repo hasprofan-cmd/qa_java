@@ -14,7 +14,7 @@ public class Alex extends Lion{
     }
 
     public String getPlaceOfLiving() {
-        return "Зоопарк";
+        return "Нью-Йоркский зоопар";
     }
 
     @Override
